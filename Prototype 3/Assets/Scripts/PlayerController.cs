@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float gravityModifier = 9.8f;
 
+    private bool grounded = true;
+
     void Start()
     {
         PlayerRB = GetComponent<Rigidbody>();
@@ -20,9 +22,18 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.W))
+        if(Input.GetKeyDown(KeyCode.Space) && grounded)
         {
             PlayerRB.AddForce(Vector3.up *jumpForce, ForceMode.Impulse);
+            grounded = false;
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            grounded = true;
         }
     }
 }
