@@ -5,6 +5,7 @@ using UnityEngine;
 public class MoveLeft : MonoBehaviour
 {
     [SerializeField] private float speed;
+    [SerializeField] private float limitX;
 
     void Start()
     {
@@ -14,6 +15,7 @@ public class MoveLeft : MonoBehaviour
     
     void Update()
     {
-        transform.Translate(speed * Vector3.left * Time.deltaTime);
+         transform.Translate(speed * Vector3.left * Time.deltaTime);
+
     }
 }

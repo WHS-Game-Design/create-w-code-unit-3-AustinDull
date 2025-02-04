@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
 
     private bool grounded = true;
 
+    public float speed;
+
     void Start()
     {
         PlayerRB = GetComponent<Rigidbody>();
