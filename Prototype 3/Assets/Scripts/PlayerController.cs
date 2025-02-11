@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 
     private bool grounded = true;
 
-    public float speed;
+    public bool gameIsActive = true;
 
     void Start()
     {
@@ -36,6 +36,11 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.CompareTag("Ground"))
         {
             grounded = true;
+        }
+        else if(collision.gameObject.CompareTag("Obstacle"))
+        {
+            gameIsActive = false;
+            Debug.Log("I just lost the game");
         }
     }
 }

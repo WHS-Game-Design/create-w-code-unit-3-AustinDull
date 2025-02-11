@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MoveLeft : MonoBehaviour
 {
-    [SerializeField] private float speed;
-    [SerializeField] private float limitX;
+    [SerializeField] private float speed = 15;
+
 
     void Start()
     {
