@@ -10,8 +10,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float jumpForce;
     [SerializeField] private float gravityModifier = 9.8f;
-
-    private bool grounded = true;
+    private Animator playerAnim;
+    public bool grounded = true;
 
     public bool gameIsActive = true;
 
@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     {
         PlayerRB = GetComponent<Rigidbody>();
         Physics.gravity *= gravityModifier;
+        playerAnim = GetComponent<Animator>();
         
     }
 
@@ -26,21 +27,26 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space) && grounded)
         {
+
             PlayerRB.AddForce(Vector3.up *jumpForce, ForceMode.Impulse);
             grounded = false;
+            playerAnim.SetTrigger("Jump_trig");
         }
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Ground"))
-        {
-            grounded = true;
-        }
-        else if(collision.gameObject.CompareTag("Obstacle"))
+        if(collision.gameObject.CompareTag("Obstacle") && gameIsActive!)
         {
             gameIsActive = false;
             Debug.Log("I just lost the game");
         }
+
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            grounded = true;
+        }
+
+        
     }
 }

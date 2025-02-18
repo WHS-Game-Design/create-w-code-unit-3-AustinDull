@@ -6,18 +6,25 @@ public class SpawnController : MonoBehaviour
 {
     [SerializeField] private GameObject obstaclePrefab;
     [SerializeField] private Vector3 spawnPostition = new Vector3(30, 2, 2);
-    
-    private float startDelay = 2;
-    private float repeatRate = 2;
+    private PlayerController playerControllerScript;
+
+    private float startDelay = 1;
+    private float repeatRate = 1;
 
     void Start()
     {
+
+        playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
         InvokeRepeating(nameof(SpawnObstacle), startDelay, repeatRate);
     }
 
     
     void SpawnObstacle()
     {
-        Instantiate(obstaclePrefab, spawnPostition, obstaclePrefab.transform.rotation);
+        if(playerControllerScript.gameIsActive == true)
+        {
+            Instantiate(obstaclePrefab, spawnPostition, obstaclePrefab.transform.rotation);
+        }
+        
     }
 }
