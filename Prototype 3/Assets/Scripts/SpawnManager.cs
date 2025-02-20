@@ -9,7 +9,7 @@ public class SpawnController : MonoBehaviour
     private PlayerController playerControllerScript;
 
     private float startDelay = 1;
-    private float repeatRate = 1;
+    private float repeatRate = 1.5f;
 
     void Start()
     {
